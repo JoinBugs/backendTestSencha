@@ -3,3 +3,8 @@ c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\Model\bi
 c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
 c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\Model\obj\Debug\Model.dll
 c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\Model\obj\Debug\Model.pdb
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Model\bin\Debug\Model.dll
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Model\bin\Debug\Model.pdb
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Model\obj\Debug\Model.dll
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Model\obj\Debug\Model.pdb

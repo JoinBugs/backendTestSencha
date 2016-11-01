@@ -39,8 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAO\AccessHolaMundo.cs" />
-    <Compile Include="Entities\HolaMundo.cs" />
+    <Compile Include="DAO\AccessMarker.cs" />
+    <Compile Include="Entities\Marker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

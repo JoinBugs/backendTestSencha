@@ -6,3 +6,11 @@ c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\ExamenEx
 c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\ExamenExtJs\obj\Debug\ExamenExtJs.pdb
 c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\ExamenExtJs\bin\Model.dll
 c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\ExamenExtJs\bin\Model.pdb
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\ExamenExtJs\bin\ExamenExtJs.dll.config
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\ExamenExtJs\bin\ExamenExtJs.dll
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\ExamenExtJs\bin\ExamenExtJs.pdb
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\ExamenExtJs\bin\Model.dll
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\ExamenExtJs\bin\Model.pdb
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\ExamenExtJs\obj\Debug\ExamenExtJs.csprojResolveAssemblyReference.cache
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\ExamenExtJs\obj\Debug\ExamenExtJs.dll
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\ExamenExtJs\obj\Debug\ExamenExtJs.pdb

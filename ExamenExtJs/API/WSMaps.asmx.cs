@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using System.Web.Script.Services;
 using Model.DAO;
+using Model.Entities;
 
 namespace ExamenExtJs.API
 {
@@ -17,13 +19,16 @@ namespace ExamenExtJs.API
     // [System.Web.Script.Services.ScriptService]
     public class WSMaps : System.Web.Services.WebService
     {
-
         [WebMethod]
-        public string HelloWorld()
+        public bool SaveMarker( string name, long latitud, long longitud, string address  )
         {
-            return UtilString.toJSON( AccessHolaMundo.get() );
+            return AccessMarker.saveMarker( new Marker( name, latitud, longitud, address ) );
         }
 
-      
+        [WebMethod]
+        public string GetAllMarkers()
+        {
+            return UtilString.toJSON( AccessMarker.getAllMarkers() );
+        }
     }
 }
