@@ -1,0 +1,5 @@
+c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\Model\bin\Debug\Model.dll
+c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\Model\bin\Debug\Model.pdb
+c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\Model\obj\Debug\Model.dll
+c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\Model\obj\Debug\Model.pdb

@@ -1,0 +1,8 @@
+c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\ExamenExtJs\bin\ExamenExtJs.dll.config
+c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\ExamenExtJs\bin\ExamenExtJs.dll
+c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\ExamenExtJs\bin\ExamenExtJs.pdb
+c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\ExamenExtJs\obj\Debug\ExamenExtJs.csprojResolveAssemblyReference.cache
+c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\ExamenExtJs\obj\Debug\ExamenExtJs.dll
+c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\ExamenExtJs\obj\Debug\ExamenExtJs.pdb
+c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\ExamenExtJs\bin\Model.dll
+c:\users\acornejocruz\documents\visual studio 2013\Projects\ExamenExtJs\ExamenExtJs\bin\Model.pdb
