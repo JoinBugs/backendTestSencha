@@ -60,6 +60,7 @@
     <Content Include="API\WSMaps.asmx" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
+    <Content Include="_public\css\index.css" />
     <Content Include="_public\js\index.js" />
     <Content Include="_public\js\libs\util.js" />
     <Content Include="_public\js\libs\utilAjax.js" />
@@ -92,9 +93,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="_public\css\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{4104bb98-f1b8-44cb-8c2c-effead9557b8}</Project>

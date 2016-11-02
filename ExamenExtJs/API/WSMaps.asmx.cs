@@ -20,9 +20,9 @@ namespace ExamenExtJs.API
     public class WSMaps : System.Web.Services.WebService
     {
         [WebMethod]
-        public bool SaveMarker( string name, long latitud, long longitud, string address  )
+        public string SaveMarker( string name, double latitud, double longitud, string address  )
         {
-            return AccessMarker.saveMarker( new Marker( name, latitud, longitud, address ) );
+            return AccessMarker.saveMarker( new Marker( name, latitud, longitud, address ) ).ToString();
         }
 
         [WebMethod]
