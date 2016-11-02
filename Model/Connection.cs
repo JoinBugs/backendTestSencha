@@ -5,49 +5,42 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Configuration;
 
 namespace Model
 {
     public class Connection
     {
-        public SqlConnection    cnConexion,
-                                cnConexionBDProblema;
+        public static  string SERVER              = "PCI-002",
+                              DATABASE            = "testClient";
+        public static  bool   TRUSTED_CONNECTION  = true;
 
-        public static String DB_IP = "127.0.0.1",
-                                 DB_PORT = "3306",    
-                                 DB_DEFAULT_NAME = "sqlJudge",
-                                 DB_USER = "root",
-                                 DB_PASS = "root";
+        public SqlConnection cnConexion;
+        private const string DELIM = ";";
 
         private static Connection instance = new Connection();
-
-        private String DELIM = ";";
         
         private Connection()
         {
             this.cnConexion = new SqlConnection();
-            this.cnConexionBDProblema = new SqlConnection();
             configConnections();
         }
 
         private void configConnections()
         {
-            this.cnConexion.ConnectionString = String.Format("SERVER={0} PORT={1} DATABASE={2} UID={3} PWD={4}",
-                                                                                                DB_IP,
-                                                                                                DB_PORT,
-                                                                                                DB_DEFAULT_NAME,
-                                                                                                DB_USER,
-                                                                                                DB_PASS
-                                                                                                ).Replace(" ", DELIM);
-
+            this.cnConexion.ConnectionString = String.Format("Server={0} Database={1} Trusted_Connection={2} ", 
+                                                             SERVER,
+                                                             DATABASE,
+                                                             TRUSTED_CONNECTION
+                                                             ).Replace( " ", DELIM );
         }
 
         public static Connection getConnection()
         {
-            return instance;
+            return new Connection();
         }
 
-        private bool Conectar(string bd, SqlConnection conexion)
+        private bool Conectar(SqlConnection conexion)
         {
             if( conexion.State != ConnectionState.Open )
             {
@@ -58,33 +51,21 @@ namespace Model
                 }
                 catch (SqlException ex)
                 {
-                    //MessageBox.Show("Problemas con el servidor de bases de datos", "Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
-            // CONEXIÓN A LA BASE DE DATOS DEL PROBLEMA A EVALUAR
                 
             return true;
         }
 
         public bool ConectarBD()
         {
-            return Conectar(DB_DEFAULT_NAME, cnConexion);
+            return Conectar(cnConexion);
         }
 
-        public bool ConectarBDProblema( String bd )
-        {
-            return Conectar(bd, cnConexionBDProblema);
-        }
-
-        public void Cerrar()
+        public void CerrarBD()
         {
             cnConexion.Close();
-        }
-
-        public void CerrarBDProblema()
-        {
-            cnConexionBDProblema.Close();
         }
 
         public bool ejecutar(SqlCommand cmd)
@@ -114,7 +95,7 @@ namespace Model
         public R ejecutarConsulta<R>(Func<SqlCommand, R> consult)
         {
             SqlCommand comm = new SqlCommand();
-            comm.Connection = this.cnConexionBDProblema;
+            comm.Connection = this.cnConexion;
             R result = consult.Invoke(comm);
             return result;
         }
@@ -140,13 +121,8 @@ namespace Model
                 cmd.Dispose();
                 dr.Close();
                 dr.Dispose();
-                Cerrar();
+                CerrarBD();
             }
-        }
-
-        public override object InitializeLifetimeService()
-        {
-            return null;
         }
     }
 }

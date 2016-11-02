@@ -4,27 +4,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model.Entities;
+using System.Data.SqlClient;
 
 namespace Model.DAO
 {
     public class AccessMarker
     {
+        private static Connection db = Connection.getConnection();
+
         private AccessMarker() { }
 
         public static bool saveMarker( Marker marker )
         {
-            return true;
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "INSERT INTO MARKER( name, latitud, longitud, address ) VALUES( @name, @latitud, @longitud, @address )";
+            cmd.Connection = db.cnConexion;
+            cmd.Parameters.AddWithValue("@name", marker.Name );
+            cmd.Parameters.AddWithValue("@latitud", marker.Latitud);
+            cmd.Parameters.AddWithValue("@longitud", marker.Longitud);
+            cmd.Parameters.AddWithValue("@address", marker.Address);
+            db.ConectarBD();
+            bool sucess = db.ejecutar(cmd);
+            db.CerrarBD();
+            return sucess;
         }
 
         public static List<Marker> getAllMarkers()
         {
             List<Marker> markers = new List<Marker>();
-            markers.Add(new Marker()
+
+            db.ejecutarReader("SELECT * FROM MARKER", reader =>
             {
-                Name = "marker1",
-                Latitud = 123123123,
-                Longitud = 234234234,
-                Address = "Guadalajara"
+                markers.Add(new Marker()
+                {
+                    Name = reader["name"].ToString(),
+                    Latitud = Convert.ToInt64(reader["latitud"].ToString()),
+                    Longitud = Convert.ToInt64(reader["longitud"].ToString()),
+                    Address = reader["address"].ToString()
+                });
             });
 
             return markers;

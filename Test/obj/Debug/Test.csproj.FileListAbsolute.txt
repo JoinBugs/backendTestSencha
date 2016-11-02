@@ -1,0 +1,5 @@
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Test\bin\Debug\Test.dll
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Test\bin\Debug\Test.pdb
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Test\obj\Debug\Test.dll
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Test\obj\Debug\Test.pdb

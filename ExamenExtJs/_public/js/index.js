@@ -7,13 +7,21 @@
         ws.onLoad('http://localhost:58082/API/WSMaps.asmx', function ()
         {
             console.log('ws.js is loaded');
-            ws.GetAllMarkers(function( markers )
+
+            ws.SaveMarker(function () { }, {
+                'name'      : 'place from js',
+                'latitud'   : 123123123,
+                'longitud'  : 4324324324,
+                'address'   : 'this is a unreal address'
+            });
+
+            /*ws.GetAllMarkers(function( markers )
             {
                 markers.forEach(function( marker )
                 {
                     console.log( marker );
                 });
-            });
+            });*/
         });
     }
 }

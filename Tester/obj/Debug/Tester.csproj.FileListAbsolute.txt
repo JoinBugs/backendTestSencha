@@ -1,0 +1,8 @@
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Tester\bin\Debug\Tester.exe.config
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Tester\bin\Debug\Tester.exe
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Tester\bin\Debug\Tester.pdb
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Tester\bin\Debug\Model.dll
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Tester\bin\Debug\Model.pdb
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Tester\obj\Debug\Tester.csprojResolveAssemblyReference.cache
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Tester\obj\Debug\Tester.exe
+C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Tester\obj\Debug\Tester.pdb
