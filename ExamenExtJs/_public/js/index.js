@@ -165,6 +165,33 @@ function initAutocomplete() {
 
         window.userHistory = userHistory;
 
+        ws.onLoad('http://localhost:58082/API/WSMaps.asmx', function()
+        {
+            var icon = {
+                'url': 'https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png',
+                'size': new google.maps.Size(71, 71),
+                'origin': new google.maps.Point(0, 0),
+                'anchor': new google.maps.Point(17, 34),
+                'scaledSize': new google.maps.Size(25, 25)
+            };
+
+            ws.GetAllMarkers(function (markers) {
+                markers.forEach(function (marker) {
+                    console.log(marker);
+                    window.userHistory.add({ 'history': marker.Address });
+                    window.markers.push({
+                        'marker': new google.maps.Marker({
+                            map: map,
+                            icon: icon,
+                            title: marker.Name,
+                            position: new google.maps.LatLng( marker.Latitud, marker.longitud )
+                        }),
+                        'place': ''
+                    });
+                });
+            });
+        });
+
         Ext.create('Ext.grid.Panel', {
             renderTo: document.querySelector('#pnl-grid'),
             store: userStore,
@@ -240,36 +267,3 @@ function initAutocomplete() {
     }
 })
 (window, document);
-
-
-/*(function (window, document, undefined)
-{
-    window.addEventListener('load', init, false);
-
-    function init()
-    {
-        ws.onLoad('http://localhost:58082/API/WSMaps.asmx', function ()
-        {
-            console.log('ws.js is loaded');
-
-            ws.SaveMarker(function( res )
-            {
-                console.log(res);
-            }, {
-                'name'      : 'place from js',
-                'latitud'   : 123123123,
-                'longitud'  : 4324324324,
-                'address'   : 'this is a unreal address'
-            });
-
-            ws.GetAllMarkers(function( markers )
-            {
-                markers.forEach(function( marker )
-                {
-                    console.log( marker );
-                });
-            });
-        });
-    }
-}
-)( window, document );*/
