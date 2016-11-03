@@ -10,7 +10,7 @@ namespace Model.Entities
     {
         public Marker() { }
 
-        public Marker( string name, double latitud, double longitud, string address )
+        public Marker( string name, string latitud, string longitud, string address )
         {
             this.Name = name;
             this.Latitud = latitud;
@@ -19,8 +19,8 @@ namespace Model.Entities
         }
 
         public string Name { get; set; }
-        public double Latitud { get; set; }
-        public double Longitud { get; set; }
+        public string Latitud { get; set; }
+        public string Longitud { get; set; }
         public string Address { get; set; }
     }
 }

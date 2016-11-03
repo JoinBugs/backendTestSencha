@@ -184,7 +184,7 @@ function initAutocomplete() {
                             map: map,
                             icon: icon,
                             title: marker.Name,
-                            position: new google.maps.LatLng( marker.Latitud, marker.longitud )
+                            position: new google.maps.LatLng( parseFloat( marker.Latitud ), parseFloat( marker.Longitud ) )
                         }),
                         'place': ''
                     });
@@ -232,12 +232,15 @@ function initAutocomplete() {
 
                     var bounds = new google.maps.LatLngBounds();
 
-                    if (markers[index].place.geometry.viewport)
+                    /*if (markers[index].place.geometry.viewport)
                         bounds.union(markers[index].place.geometry.viewport);
                     else
-                        bounds.extend(markers[index].place.geometry.location);
+                        bounds.union(markers[index].marker.position);
                     markers[index].marker.setMap(window.map);
-                    map.fitBounds(bounds);
+                    map.fitBounds(bounds);*/
+                    markers[index].marker.setMap(window.map);
+                    map.setZoom(10);
+                    map.panTo(markers[index].marker.position);
                 }
             }
         });

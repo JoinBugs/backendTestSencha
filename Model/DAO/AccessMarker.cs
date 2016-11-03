@@ -38,8 +38,8 @@ namespace Model.DAO
                 markers.Add(new Marker()
                 {
                     Name = reader["name"].ToString(),
-                    Latitud = Convert.ToDouble(reader["latitud"].ToString()),
-                    Longitud = Convert.ToDouble(reader["longitud"].ToString()),
+                    Latitud = reader["latitud"].ToString(),
+                    Longitud = reader["longitud"].ToString(),
                     Address = reader["address"].ToString()
                 });
             });
