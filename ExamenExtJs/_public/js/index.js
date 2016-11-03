@@ -185,20 +185,24 @@ function initAutocomplete() {
             };
 
             ws.GetAllMarkers(function (markers) {
-                markers.forEach(function (marker) {
-                    console.log(marker);
-                    window.userHistory.add({ 'history': marker.Address });
-                    window.markers.push({
-                        'marker': new google.maps.Marker({
-                            map: map,
-                            icon: icon,
-                            title: marker.Name,
-                            position: new google.maps.LatLng( parseFloat( marker.Latitud ), parseFloat( marker.Longitud ) )
-                        }),
-                        'reference': marker.Reference
+                if (util.isArray(markers) && markers.length > 0)
+                    markers.forEach(function (marker) {
+                        console.log(marker);
+                        window.userHistory.add({ 'history': marker.Address });
+                        window.markers.push({
+                            'marker': new google.maps.Marker({
+                                map: map,
+                                icon: icon,
+                                title: marker.Name,
+                                position: new google.maps.LatLng(parseFloat(marker.Latitud), parseFloat(marker.Longitud))
+                            }),
+                            'reference': marker.Reference
+                        });
+                        setPopUpOnMarker(window.markers[window.markers.length - 1], window.map);
                     });
-                   setPopUpOnMarker(window.markers[window.markers.length - 1], window.map);
-                });
+                else
+                    Ext.MessageBox.alert('Aviso', 'No hay Registros Guardados', function (btn) {
+                    });
             });
         });
 
