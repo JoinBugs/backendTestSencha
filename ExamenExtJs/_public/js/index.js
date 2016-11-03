@@ -1,5 +1,31 @@
 ﻿window.markers = [];
 
+function setPopUpOnMarker( marker, map )
+{
+    var infowindow = new google.maps.InfoWindow(),
+        service = new google.maps.places.PlacesService(map);
+
+    service.getDetails({ 'reference': marker.reference }, function (details, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+            google.maps.event.addListener(marker.marker, 'click', function () {
+                infowindow.setContent('<div class="detail-marker">'
+                                      + details.name + "<br />"
+                                      + (details.formatted_address || 'sin direccion') + "<br />"
+                                      + (details.website || 'sin sitio web') + "<br />"
+                                      + (details.rating || 'sin rating') + "<br />"
+                                      + (details.formatted_phone_number || 'sin numero de telefono') + "<br />"
+                                      + (details.photos[1].html_attributions) + "<br />"
+                                      + (details.photos[2].html_attributions) + "<br />"
+                                      + (details.photos[3].html_attributions)
+                                      + '</div>'
+                                    );
+                infowindow.open(map, this);
+            });
+        }
+    });
+}
+
+
 function initAutocomplete() {
     var map = window.map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -33.8688, lng: 151.2195 },
@@ -66,7 +92,7 @@ function initAutocomplete() {
                         title: place.name,
                         position: place.geometry.location
                     }),
-                    'place': place
+                    'reference': place.reference
                 });
 
                 ws.SaveMarker(function (res) {
@@ -75,28 +101,11 @@ function initAutocomplete() {
                     'name': place.name,
                     'latitud': place.geometry.location.lat(),
                     'longitud': place.geometry.location.lng(),
-                    'address': place.formatted_address
+                    'address': place.formatted_address,
+                    'reference' : place.reference
                 });
 
-                service.getDetails({ 'reference': places[0].reference }, function (details, status) {
-                    if (status == google.maps.places.PlacesServiceStatus.OK) {
-                        google.maps.event.addListener(markers[markers.length - 1].marker, 'click', function () {
-                            infowindow.setContent('<div class="detail-marker">'
-                                                  + details.name + "<br />"
-                                                  + (details.formatted_address || 'sin direccion') + "<br />"
-                                                  + (details.website || 'sin sitio web') + "<br />"
-                                                  + (details.rating || 'sin rating') + "<br />"
-                                                  + (details.formatted_phone_number || 'sin numero de telefono') + "<br />"
-                                                  + (details.photos[1].html_attributions) + "<br />"
-                                                  + (details.photos[2].html_attributions) + "<br />"
-                                                  + (details.photos[3].html_attributions)
-                                                  + '</div>'
-                                                );
-                            infowindow.open(map, this);
-                        });
-                    }
-                });
-
+                setPopUpOnMarker(markers[markers.length - 1], window.map );
 
                 if (place.geometry.viewport) {
                     // Only geocodes have viewport.
@@ -186,8 +195,9 @@ function initAutocomplete() {
                             title: marker.Name,
                             position: new google.maps.LatLng( parseFloat( marker.Latitud ), parseFloat( marker.Longitud ) )
                         }),
-                        'place': ''
+                        'reference': marker.Reference
                     });
+                   setPopUpOnMarker(window.markers[window.markers.length - 1], window.map);
                 });
             });
         });
@@ -232,12 +242,6 @@ function initAutocomplete() {
 
                     var bounds = new google.maps.LatLngBounds();
 
-                    /*if (markers[index].place.geometry.viewport)
-                        bounds.union(markers[index].place.geometry.viewport);
-                    else
-                        bounds.union(markers[index].marker.position);
-                    markers[index].marker.setMap(window.map);
-                    map.fitBounds(bounds);*/
                     markers[index].marker.setMap(window.map);
                     map.setZoom(10);
                     map.panTo(markers[index].marker.position);
@@ -261,12 +265,6 @@ function initAutocomplete() {
             window.dataMatched = dataMatched;
         },
           false);
-
-
-        /*Ext.MessageBox.alert('Aviso', 'Libreria ExtJS cargada satisfactoriamente.', function (btn)
-        {
-            //alert('Boton presionado: ' + btn);
-        });*/
     }
 })
 (window, document);

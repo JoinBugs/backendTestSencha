@@ -17,12 +17,13 @@ namespace Model.DAO
         public static bool saveMarker( Marker marker )
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "INSERT INTO MARKER( name, latitud, longitud, address ) VALUES( @name, @latitud, @longitud, @address )";
+            cmd.CommandText = "INSERT INTO MARKER( name, latitud, longitud, address, reference ) VALUES( @name, @latitud, @longitud, @address, @reference )";
             cmd.Connection = db.cnConexion;
             cmd.Parameters.AddWithValue("@name", marker.Name );
             cmd.Parameters.AddWithValue("@latitud", marker.Latitud);
             cmd.Parameters.AddWithValue("@longitud", marker.Longitud);
             cmd.Parameters.AddWithValue("@address", marker.Address);
+            cmd.Parameters.AddWithValue("@reference", marker.Reference);
             db.ConectarBD();
             bool sucess = db.ejecutar(cmd);
             db.CerrarBD();
@@ -40,7 +41,8 @@ namespace Model.DAO
                     Name = reader["name"].ToString(),
                     Latitud = reader["latitud"].ToString(),
                     Longitud = reader["longitud"].ToString(),
-                    Address = reader["address"].ToString()
+                    Address = reader["address"].ToString(),
+                    Reference = reader["reference"].ToString()
                 });
             });
 
