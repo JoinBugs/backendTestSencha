@@ -14,3 +14,11 @@ C:\Users\acornejocruz\Documents\projects\ExamenExtJs\ExamenExtJs\bin\Model.pdb
 C:\Users\acornejocruz\Documents\projects\ExamenExtJs\ExamenExtJs\obj\Debug\ExamenExtJs.csprojResolveAssemblyReference.cache
 C:\Users\acornejocruz\Documents\projects\ExamenExtJs\ExamenExtJs\obj\Debug\ExamenExtJs.dll
 C:\Users\acornejocruz\Documents\projects\ExamenExtJs\ExamenExtJs\obj\Debug\ExamenExtJs.pdb
+C:\Users\hp\Documents\Flaco\REPOS\CREATED\backendTestSencha\ExamenExtJs\bin\ExamenExtJs.dll.config
+C:\Users\hp\Documents\Flaco\REPOS\CREATED\backendTestSencha\ExamenExtJs\bin\ExamenExtJs.dll
+C:\Users\hp\Documents\Flaco\REPOS\CREATED\backendTestSencha\ExamenExtJs\bin\ExamenExtJs.pdb
+C:\Users\hp\Documents\Flaco\REPOS\CREATED\backendTestSencha\ExamenExtJs\bin\Model.dll
+C:\Users\hp\Documents\Flaco\REPOS\CREATED\backendTestSencha\ExamenExtJs\bin\Model.pdb
+C:\Users\hp\Documents\Flaco\REPOS\CREATED\backendTestSencha\ExamenExtJs\obj\Debug\ExamenExtJs.csprojResolveAssemblyReference.cache
+C:\Users\hp\Documents\Flaco\REPOS\CREATED\backendTestSencha\ExamenExtJs\obj\Debug\ExamenExtJs.dll
+C:\Users\hp\Documents\Flaco\REPOS\CREATED\backendTestSencha\ExamenExtJs\obj\Debug\ExamenExtJs.pdb

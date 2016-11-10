@@ -30,5 +30,11 @@ namespace ExamenExtJs.API
         {
             return UtilString.toJSON( AccessMarker.getAllMarkers() );
         }
+
+        [WebMethod]
+        public string GetMarkersByRange( int index_start, int index_end )
+        {
+            return UtilString.toJSON( AccessMarker.getMarkersByRange( index_start, index_end ) );
+        }
     }
 }

@@ -48,5 +48,24 @@ namespace Model.DAO
 
             return markers;
         }
+
+        public static List<Marker> getMarkersByRange( int index_start, int index_end )
+        {
+            List<Marker> markers = new List<Marker>();
+
+            db.ejecutarReader(String.Format("EXEC usp_getMarkerByRange {0}, {1}", index_start, index_end),
+                        reader =>
+                        {
+                            markers.Add(new Marker()
+                            {
+                                Name = reader["name"].ToString(),
+                                Latitud = reader["latitud"].ToString(),
+                                Longitud = reader["longitud"].ToString(),
+                                Address = reader["address"].ToString(),
+                                Reference = reader["reference"].ToString()
+                            });
+                        });
+            return markers;
+        }
     }
 }

@@ -6,3 +6,11 @@ C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Tester\bin\Debug\Model.pdb
 C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Tester\obj\Debug\Tester.csprojResolveAssemblyReference.cache
 C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Tester\obj\Debug\Tester.exe
 C:\Users\acornejocruz\Documents\projects\ExamenExtJs\Tester\obj\Debug\Tester.pdb
+C:\Users\hp\Documents\Flaco\REPOS\CREATED\backendTestSencha\Tester\bin\Debug\Tester.exe.config
+C:\Users\hp\Documents\Flaco\REPOS\CREATED\backendTestSencha\Tester\bin\Debug\Tester.exe
+C:\Users\hp\Documents\Flaco\REPOS\CREATED\backendTestSencha\Tester\bin\Debug\Tester.pdb
+C:\Users\hp\Documents\Flaco\REPOS\CREATED\backendTestSencha\Tester\bin\Debug\Model.dll
+C:\Users\hp\Documents\Flaco\REPOS\CREATED\backendTestSencha\Tester\bin\Debug\Model.pdb
+C:\Users\hp\Documents\Flaco\REPOS\CREATED\backendTestSencha\Tester\obj\Debug\Tester.csprojResolveAssemblyReference.cache
+C:\Users\hp\Documents\Flaco\REPOS\CREATED\backendTestSencha\Tester\obj\Debug\Tester.exe
+C:\Users\hp\Documents\Flaco\REPOS\CREATED\backendTestSencha\Tester\obj\Debug\Tester.pdb
