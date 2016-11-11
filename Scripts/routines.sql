@@ -1,5 +1,6 @@
 USE testClient;
 
+GO
 CREATE PROCEDURE usp_getMarkerByRange
 @index_start INT,
 @index_end INT

@@ -1,4 +1,67 @@
-﻿window.markers = [];
+﻿window.pages = [];
+
+window.TOTAL = 0;
+
+var fetchedData = function ()
+{
+    this.data = null;
+    this.total = 0;
+};
+
+function indexPageOfMarker( pages, page )
+{
+    for (var i = 0, l = pages.length; i < l; i++)
+        if (pages[i].page === page)
+            return i;
+    return -1;
+}
+
+function getData(page, count, store)
+{
+    page = page - 1;
+    var args = {
+        'index_start': ( page * count ) + 1,
+        'index_end': ( page * count) + count
+    };
+    ws.GetMarkersByRange(function (markers)
+    {
+        var pageFill = [];
+        if (util.isArray(markers) && markers.length > 0)
+        {
+            markers.forEach(function (marker) {
+                console.log(marker);
+                pageFill.push({
+                    'marker': new google.maps.Marker({
+                        map: map,
+                        icon: icon,
+                        title: marker.Name,
+                        position: new google.maps.LatLng(parseFloat(marker.Latitud), parseFloat(marker.Longitud))
+                    }),
+                    'reference': marker.Reference
+                });
+                setPopUpOnMarker(pageFill[ pageFill.length - 1 ], window.map);
+            });
+            var index_page = indexPageOfMarker( window.pages, page );
+            if (index_page === -1)
+                window.pages.push({
+                    'page': page,
+                    'markers': pageFill
+                });
+            else
+                window.pages[index_page] = {
+                    'page': page,
+                    'markers': pageFill
+                };
+        }
+            
+        fetchedData.data = _.map(markers, function (e) { return [e.Address] });
+        fetchedData.total = window.TOTAL;
+        store.proxy.data = fetchedData;
+        window.grid.setLoading(false);
+        //userHistory.load();
+        //userHistory.reload();
+    }, args);
+}
 
 function setPopUpOnMarker( marker, map )
 {
@@ -61,7 +124,7 @@ function initAutocomplete() {
                 service = new google.maps.places.PlacesService(map);
 
             //userHistory.removeAll();
-            window.userHistory.add({ 'history': places[0].formatted_address });
+            //window.userHistory.add({ 'history': places[0].formatted_address });
 
             if (places.length == 0) {
                 return;
@@ -105,7 +168,7 @@ function initAutocomplete() {
                     'reference' : place.reference
                 });
 
-                setPopUpOnMarker(markers[markers.length - 1], window.map );
+                setPopUpOnMarker(pages[pages.length - 1], window.map );
 
                 if (place.geometry.viewport) {
                     // Only geocodes have viewport.
@@ -151,6 +214,15 @@ function initAutocomplete() {
     }
 
     function PageLoaded() {
+
+        window.icon = {
+            'url': 'https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png',
+            'size': new google.maps.Size(71, 71),
+            'origin': new google.maps.Point(0, 0),
+            'anchor': new google.maps.Point(17, 34),
+            'scaledSize': new google.maps.Size(25, 25)
+        };
+
         var btnSearch = document.querySelector('#pac-input');
 
         Ext.define('usersuggest', {
@@ -169,14 +241,26 @@ function initAutocomplete() {
         }),
             userHistory = Ext.create('Ext.data.Store', {
                 model: 'UserHistory',
-                data: []
+                pageSize: 2,
+                proxy: {
+                    type: 'memory',
+                    reader: { type: 'array', root: 'data', totalProperty: 'total' }
+                },
+                listeners: {
+                    beforeload: function (store, operation, eOpts) {
+                        var page = operation.page;
+                        var limit = operation.limit;
+                        window.grid.setLoading(true);
+                        getData(page, limit, store);
+                    }
+                }
             });
-
+   
         window.userHistory = userHistory;
 
         ws.onLoad('http://localhost:58082/API/WSMaps.asmx', function()
         {
-            var icon = {
+            window.icon = {
                 'url': 'https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png',
                 'size': new google.maps.Size(71, 71),
                 'origin': new google.maps.Point(0, 0),
@@ -186,9 +270,13 @@ function initAutocomplete() {
 
             ws.GetAllMarkers(function (markers) {
                 if (util.isArray(markers) && markers.length > 0)
-                    markers.forEach(function (marker) {
+                {
+                    window.TOTAL = markers.length;
+                }
+                    
+                    /*markers.forEach(function (marker) {
                         console.log(marker);
-                        window.userHistory.add({ 'history': marker.Address });
+                        //window.userHistory.add({ 'history': marker.Address });
                         window.markers.push({
                             'marker': new google.maps.Marker({
                                 map: map,
@@ -202,7 +290,7 @@ function initAutocomplete() {
                     });
                 else
                     Ext.MessageBox.alert('Aviso', 'No hay Registros Guardados', function (btn) {
-                    });
+                    });*/
             });
         });
 
@@ -223,7 +311,7 @@ function initAutocomplete() {
             ]
         });
 
-        Ext.create('Ext.grid.Panel', {
+      window.grid =  Ext.create('Ext.grid.Panel', {
             renderTo: document.querySelector('#pnl-grid-history'),
             store: userHistory,
             width: 400,
@@ -239,19 +327,29 @@ function initAutocomplete() {
                 }
             ],
             listeners: {
-                itemclick: function (dv, record, item, index, e) {
-                    for (var i = 0, l = window.markers.length; i < l; i++)
+                itemclick: function (dv, record, item, index, e) 
+                {
+                    var index_current_page = indexPageOfMarker(pages, parseInt(document.getElementById('numberfield-1019-inputEl').value) - 1 );
+                    var markers = window.pages[index_current_page].markers;
+                    for (var i = 0, l = markers.length; i < l; i++)
                         if (i !== index)
-                            window.markers[i].marker.setMap(null);
+                            markers[i].marker.setMap( null );
+                            //window.markers[i].marker.setMap(null);
 
                     var bounds = new google.maps.LatLngBounds();
 
-                    markers[index].marker.setMap(window.map);
+                    markers[i].marker.setMap(window.map);
                     map.setZoom(10);
-                    map.panTo(markers[index].marker.position);
+                    map.panTo(markers[i].marker.position);
                 }
-            }
-        });
+            },
+            bbar: Ext.create('Ext.PagingToolbar', {
+                store: userHistory,
+                displayInfo: true,
+                displayMsg: '{0} - {1} of {2}',
+                emptyMsg: "No Hay Entradas"
+            })
+      });
 
         btnSearch.addEventListener('keypress', function (e) {
             var dataNode = document.querySelectorAll('.pac-item'),
