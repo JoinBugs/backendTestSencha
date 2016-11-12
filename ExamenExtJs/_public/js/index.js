@@ -338,9 +338,9 @@ function initAutocomplete() {
 
                     var bounds = new google.maps.LatLngBounds();
 
-                    markers[i].marker.setMap(window.map);
+                    markers[index].marker.setMap(window.map);
                     map.setZoom(10);
-                    map.panTo(markers[i].marker.position);
+                    map.panTo(markers[index].marker.position);
                 }
             },
             bbar: Ext.create('Ext.PagingToolbar', {
