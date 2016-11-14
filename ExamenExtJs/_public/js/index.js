@@ -242,7 +242,7 @@ function initAutocomplete() {
             extend: 'Ext.data.Model',
             fields: ['history']
         });
-
+        
         var userStore = Ext.create('Ext.data.Store', {
             model: 'usersuggest',
             data: []
