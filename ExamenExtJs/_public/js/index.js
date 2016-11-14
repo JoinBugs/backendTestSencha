@@ -1,12 +1,18 @@
 ﻿window.pages = [];
-
+window.isBotClick = false;
 window.TOTAL = 0;
 
-var fetchedData = function ()
+var fetchedData = window.fetchedData = function()
 {
     this.data = null;
     this.total = 0;
 };
+
+function refreshGrid()
+{
+    window.isBotClick = true;
+    document.getElementById('button-1025-btnIconEl').click();
+}
 
 function indexPageOfMarker( pages, page )
 {
@@ -58,6 +64,8 @@ function getData(page, count, store)
         fetchedData.total = window.TOTAL;
         store.proxy.data = fetchedData;
         window.grid.setLoading(false);
+        window.store = store;
+        refreshGrid();
         //userHistory.load();
         //userHistory.reload();
     }, args);
@@ -248,6 +256,11 @@ function initAutocomplete() {
                 },
                 listeners: {
                     beforeload: function (store, operation, eOpts) {
+                        if (window.isBotClick)
+                        {
+                            window.isBotClick = false;
+                            return;
+                        }
                         var page = operation.page;
                         var limit = operation.limit;
                         window.grid.setLoading(true);

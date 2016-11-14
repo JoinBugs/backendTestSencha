@@ -11,7 +11,7 @@ namespace Model
 {
     public class Connection
     {
-        public static  string SERVER              = "PCI-002",
+        public static  string SERVER              = "DESKTOP-8AVQ5EF\\SQLEXPRESS",
                               DATABASE            = "testClient";
         public static  bool   TRUSTED_CONNECTION  = true;
 
