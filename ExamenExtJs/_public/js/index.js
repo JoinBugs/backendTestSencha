@@ -245,7 +245,7 @@ function initAutocomplete() {
           
         var userStore = Ext.create('Ext.data.Store', {
             model: 'usersuggest',
-            data: []
+            data: [] 
         }),
             userHistory = Ext.create('Ext.data.Store', {
                 model: 'UserHistory',
