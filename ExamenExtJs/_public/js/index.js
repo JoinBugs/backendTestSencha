@@ -12,6 +12,7 @@ function refreshGrid()
 {
     window.isBotClick = true;
     document.getElementById('button-1025-btnIconEl').click();
+    //removeAllMarkers(window.pages);
 }
 
 function indexPageOfMarker( pages, page )
@@ -20,6 +21,18 @@ function indexPageOfMarker( pages, page )
         if (pages[i].page === page)
             return i;
     return -1;
+}
+
+function removeAllMarkers( pages )
+{
+    //pages[0].markers[0].marker.setMap( null )
+    _.forEach(pages, function ( page )
+    {
+        _.forEach(page.markers, function ( marker )
+        {
+            marker.marker.setMap( null );
+        });
+    });
 }
 
 function getData(page, count, store)
@@ -64,7 +77,7 @@ function getData(page, count, store)
         fetchedData.total = window.TOTAL;
         store.proxy.data = fetchedData;
         window.grid.setLoading(false);
-        window.store = store;
+        removeAllMarkers(window.pages);
         refreshGrid();
         //userHistory.load();
         //userHistory.reload();
@@ -285,6 +298,7 @@ function initAutocomplete() {
                 if (util.isArray(markers) && markers.length > 0)
                 {
                     window.TOTAL = markers.length;
+                    userHistory.loadPage(1);
                 }
                     
                     /*markers.forEach(function (marker) {
@@ -363,6 +377,7 @@ function initAutocomplete() {
                 emptyMsg: "No Hay Entradas"
             })
       });
+      
 
         btnSearch.addEventListener('keypress', function (e) {
             var dataNode = document.querySelectorAll('.pac-item'),
